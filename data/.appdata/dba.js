@@ -31,3 +31,5 @@ const transformedDB = dbaArray.map((item) => {
 });
 //
 console.log(transformedDB);
+
+
