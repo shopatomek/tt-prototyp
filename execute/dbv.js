@@ -8,7 +8,7 @@ const dbvArray = Object.entries(JSON.parse(dbv)).map(([id, data]) => ({
     playCount: data.playCount,
   },
 }));
-console.log(dbvArray);
+// console.log(dbvArray);
 
 const transformedDbv = dbvArray.flatMap((obj) =>
   Object.values(obj).map((item) => ({
@@ -18,7 +18,8 @@ const transformedDbv = dbvArray.flatMap((obj) =>
     playCount: item.playCount,
   }))
 );
-console.log(dbvArray);
+
+// console.log(transformedDbv);
 
 module.exports = {
   transformedDbv,

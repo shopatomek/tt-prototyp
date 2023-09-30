@@ -28,7 +28,7 @@ const transformedDba = dbaArray.map((item) => {
   return transformedItem;
 });
 //
-console.log(transformedDba);
+// console.log(transformedDba);
 
 module.exports = {
   transformedDba,
