@@ -4,15 +4,13 @@ const dbvArray = Object.entries(JSON.parse(dbv)).map(([id, data]) => ({
   [id]: {
     authorId: data.authorId,
     createTime: data.createTime,
-    itemMute: data.itemMute,
     diggCount: data.diggCount,
     playCount: data.playCount,
-    size: data.size,
   },
 }));
 console.log(dbvArray);
 
-const extractedData = dbvArray.flatMap((obj) =>
+const transformedDbv = dbvArray.flatMap((obj) =>
   Object.values(obj).map((item) => ({
     authorId: item.authorId,
     createTime: item.createTime,
@@ -20,4 +18,8 @@ const extractedData = dbvArray.flatMap((obj) =>
     playCount: item.playCount,
   }))
 );
-console.log(extractedData);
+console.log(dbvArray);
+
+module.exports = {
+  transformedDbv,
+};

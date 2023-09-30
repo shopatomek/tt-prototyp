@@ -5,7 +5,7 @@ const json = JSON.parse(dbvd);
 console.log(json);
 
 function generateObjectFromJson(json) {
-  const transformedData = {};
+  const transformedDbvd = {};
 
   for (const key in json) {
     if (json.hasOwnProperty(key)) {
@@ -17,15 +17,15 @@ function generateObjectFromJson(json) {
           .map((tag) => `#${tag.trim()}`)
           .join(" ") || "";
 
-      transformedData[key] = {
+      transformedDbvd[key] = {
         itdescription,
         tags,
       };
     }
   }
 
-  return transformedData;
+  return transformedDbvd;
 }
 
-const transformedData = generateObjectFromJson(json);
-console.log(transformedData);
+const transformedDbvd = generateObjectFromJson(json);
+console.log(transformedDbvd);

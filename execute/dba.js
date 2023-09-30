@@ -10,9 +10,7 @@ const dbaArray = Object.entries(JSON.parse(dba)).map(([id, data]) => ({
   },
 }));
 
-console.log(dbaArray);
-
-const transformedDB = dbaArray.map((item) => {
+const transformedDba = dbaArray.map((item) => {
   const transformedItem = {};
 
   for (const key in item) {
@@ -30,6 +28,8 @@ const transformedDB = dbaArray.map((item) => {
   return transformedItem;
 });
 //
-console.log(transformedDB);
+console.log(transformedDba);
 
-
+module.exports = {
+  transformedDba,
+};
