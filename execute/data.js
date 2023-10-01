@@ -1,30 +1,59 @@
 const { transformedDba } = require("../execute/dba.js");
 const { transformedDbv } = require("../execute/dbv.js");
 
-function mergeRecords(transformedDba, transformedDbv) {
-  const mergedDatabase = {};
+// Tworzymy pusty obiekt, który będzie zawierał połączone dane
+const combinedData = {};
 
-  for (const dbaRecordId in transformedDba) {
-    const dbaRecord = transformedDba[dbaRecordId];
+// Iterujemy przez obiekty w transformedDbv
+transformedDbv.forEach((dbvItem) => {
+  // Dla każdego obiektu transformedDbv, pobieramy authorId
+  const authorId = dbvItem.authorId;
 
-    if (transformedDbv[dbaRecordId]) {
-      const dbvRecord = transformedDbv[dbaRecordId];
+  // Szukamy odpowiadającego obiektu w transformedDba na podstawie authorId
+  const dbaItem = transformedDba.find((dbaItem) => dbaItem[authorId]);
 
-      mergedDatabase[dbaRecordId] = {
-        ...dbaRecord,
-        ...dbvRecord,
-      };
-    } else {
-      mergedDatabase[dbaRecordId] = dbaRecord;
-    }
+  // Jeśli znaleziono pasujący obiekt w transformedDba, to łączymy je
+  if (dbaItem) {
+    combinedData[authorId] = {
+      ...dbaItem[authorId],
+      ...dbvItem,
+    };
   }
+});
 
-  return mergedDatabase;
-}
+// Wynik będzie zawierał połączone dane
+console.log(combinedData);
+// Ten kod stworzy obiekt combinedData, który będzie zawierał połączone dane z obiektów transformedDba i transformedDbv na podstawie wartości atrybutu authorId.
 
-const mergedDatabase = mergeRecords(transformedDba, transformedDbv);
+console.log(combinedData);
 
-console.log(mergedDatabase);
+// function mergeRecords(transformedDba, transformedDbv) {
+//   const mergedDatabase = {};
+
+//   for (const dbaRecordId in transformedDba) {
+//     const dbaRecord = transformedDba[dbaRecordId];
+
+//     if (transformedDbv[dbaRecordId]) {
+//       const dbvRecord = transformedDbv[dbaRecordId];
+
+//       const mergedRecord = {
+//         ...dbaRecord,
+//         authorId: dbvRecord.authorId,
+//         createTime: dbvRecord.createTime,
+//         diggCount: dbvRecord.diggCount,
+//         playCount: dbvRecord.playCount,
+//       };
+
+//       mergedDatabase[dbaRecordId] = mergedRecord;
+//     }
+//   }
+
+//   return mergedDatabase;
+// }
+
+// const mergedDatabase = mergeRecords(transformedDba, transformedDbv);
+
+// console.log(mergedDatabase);
 
 // Wynik połączenia rekordów
 // const fs = require("fs");
