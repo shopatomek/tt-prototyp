@@ -4,43 +4,7 @@ const { transformedDba } = require("../execute/dba.js");
 // console.log(transformedDbv);
 // console.log(transformedDba);
 
-// // Tworzymy pusty obiekt, który będzie zawierał połączone dane
-// const combinedData = {};
-
-// // Iterujemy przez obiekty w transformedDbv
-// transformedDbv.forEach((dbvItem) => {
-//   // Dla każdego obiektu transformedDbv, pobieramy authorId
-//   const authorId = dbvItem.authorId;
-
-//   // Szukamy odpowiadającego obiektu w transformedDba na podstawie authorId
-//   const dbaItem = transformedDba.find((dbaItem) => dbaItem[authorId]);
-
-//   // Jeśli znaleziono pasujący obiekt w transformedDba, to łączymy je
-//   if (dbaItem) {
-//     combinedData[authorId] = {
-//       ...dbaItem[authorId],
-//       ...dbvItem,
-//     };
-//   }
-// });
-
-// Wynik będzie zawierał połączone dane
-// console.log(combinedData);
-// // Ten kod stworzy obiekt combinedData, który będzie zawierał połączone dane z obiektów transformedDba i transformedDbv na podstawie wartości atrybutu authorId.
-
-// // Ścieżka do pliku, w którym zostanie dodany wynik
-
-// // // Dodanie wyniku do pliku wynikowego
-
 // // fs.appendFileSync(pathToOutputFile, result + "\n", "utf8");
-
-// // console.log(
-// //   "Skrypt został wykonany i wynik został dodany do pliku wynikowego."
-// // );
-
-// module.exports = {
-//   combinedData,
-// };
 
 const newdb = {};
 transformedDbv.forEach((dbvItem) => {
@@ -63,3 +27,12 @@ transformedDbv.forEach((dbvItem) => {
 });
 
 console.log(newdb);
+
+module.exports = {
+  newdb,
+};
+
+// Tworzymy pusty obiekt newdb.
+// Dla każdego elementu dbvItem w tablicy transformedDbv: a. Iterujemy przez każdy klucz w obiekcie dbvItem. b. Sprawdzamy, czy dbvItem zawiera dany klucz za pomocą metody hasOwnProperty. c. Pobieramy authorId z obiektu dbvItem. d. Dla każdego elementu dbaItem w tablicy transformedDba: i. Sprawdzamy, czy dbaItem zawiera authorId. ii. Jeśli authorId istnieje w dbaItem, przechodzimy do kolejnego kroku. iii. Sprawdzamy, czy newdb nie ma jeszcze danego klucza. iv. Jeśli klucz nie istnieje w newdb, tworzymy pusty obiekt pod tym kluczem. v. Ustawiamy wartość newdb[key] na połączony obiekt dbvItem[key] i dbaItem[authorId].
+// Obiekt newdb będzie zawierał połączone informacje z transformedDbv i transformedDba.
+// Uwaga: Ten kod zakłada, że zarówno transformedDbv, jak i transformedDba są tablicami obiektów.

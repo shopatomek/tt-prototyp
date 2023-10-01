@@ -2,7 +2,7 @@ dbvd = String.raw`{"7211537468208860458":"No degree needed to get started as a d
 
 const json = JSON.parse(dbvd);
 
-console.log(json);
+// console.log(json);
 
 function generateObjectFromJson(json) {
   const transformedDbvd = {};
@@ -28,4 +28,8 @@ function generateObjectFromJson(json) {
 }
 
 const transformedDbvd = generateObjectFromJson(json);
-console.log(transformedDbvd);
+// console.log(transformedDbvd);
+
+module.exports = {
+  transformedDbvd,
+};
